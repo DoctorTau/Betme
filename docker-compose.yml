@@ -11,6 +11,9 @@ services:
       - "5432:5432"
     volumes:
       - db-data:/var/lib/postgresql/data
+      - ./Betme-backend/create-tabels.sql:/docker-entrypoint-initdb.d/create-tabels.sql
+
+      
 
   api:
     build:
