@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: betmeDb
+      POSTGRES_USER: DrTau
+      POSTGRES_PASSWORD: MyPassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: ./Betme-backend
+      dockerfile: Dockerfile
+    environment:
+      ConnectionStrings__DefaultConnection: Host=db;Port=5432;Database=betmeDb;Username=DrTau;Password=MyPassword
+    ports:
+      - "5091:5091"
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./Betme-frontend
+      dockerfile: Dockerfile
+    environment:
+      - backend__path=localhost:5091
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+
+volumes:
+  db-data:
