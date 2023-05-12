@@ -1,0 +1,6 @@
+[submodule "Betme-backend"]
+	path = Betme-backend
+	url = git@github.com:DrTau/Betme-backend.git
+[submodule "Betme-frontend"]
+	path = Betme-frontend
+	url = git@github.com:DrTau/Betme-frontend.git
