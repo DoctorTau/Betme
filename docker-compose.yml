@@ -33,7 +33,7 @@ services:
     environment:
       - backend__path=localhost:5091
     ports:
-      - "4173:4173"
+      - "8080:8080"
     depends_on:
       - api
 
