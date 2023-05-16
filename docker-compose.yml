@@ -4,13 +4,15 @@ services:
   db:
     build:
       context: ./db-data
-      dockerfile: Dockerfile 
+      dockerfile: Dockerfile
     environment:
       POSTGRES_DB: betmeDb
       POSTGRES_USER: DrTau
       POSTGRES_PASSWORD: MyPassword
     ports:
       - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
 
   api:
     build:
@@ -30,7 +32,7 @@ services:
     environment:
       - backend__path=localhost:5091
     ports:
-      - "8080:8080"
+      - "4172:8080"
     depends_on:
       - api
 
