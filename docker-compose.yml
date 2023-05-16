@@ -2,18 +2,15 @@ version: '3.8'
 
 services:
   db:
-    image: postgres
+    build:
+      context: ./db-data
+      dockerfile: Dockerfile 
     environment:
       POSTGRES_DB: betmeDb
       POSTGRES_USER: DrTau
       POSTGRES_PASSWORD: MyPassword
     ports:
       - "5432:5432"
-    volumes:
-      - db-data:/var/lib/postgresql/data
-      - ./Betme-backend/create-tabels.sql:/docker-entrypoint-initdb.d/create-tabels.sql
-
-      
 
   api:
     build:
